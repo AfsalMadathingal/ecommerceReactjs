@@ -4,24 +4,11 @@ const auth = require("../middleware/auth");
 const userController = require("../controller/userController");
 
 
-router.get('/signin', userController.signup,(req,res)=>{
 
-   
+router.post('/signin', userController.signIn)
 
-    const accessToken = jwt.sign({user:"afsal",id:1},process.env.ACCESS_TOKEN_SECRET);
+router.post('/signup',userController.signup)
 
-    res.json({message:accessToken})
-})
-
-
-router.post('/signup',(req,res)=>{
-    res.json(req.body)
-})
-
-
-router.get('/1',auth,(req,res)=>{
-    res.json(req.user)
-})
 
 
 module.exports = router;

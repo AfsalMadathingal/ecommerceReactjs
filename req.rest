@@ -1,1 +1,15 @@
-GET http://localhost:3000/api/v1/user/signin
+POST  http://localhost:3000/api/v1/user/signin
+
+{
+    "mobile": "1234567890",
+    "password": "password"
+}
+
+####
+
+POST  http://localhost:3000/api/v1/user/signup
+
+{
+    "mobile": "1234567890",
+    "password": "password"
+}

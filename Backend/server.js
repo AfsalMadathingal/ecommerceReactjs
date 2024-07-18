@@ -9,7 +9,7 @@ const errorHandler = require('./middleware/errorHandler')
 dotenv.config();
 connectDB();
 
-
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
