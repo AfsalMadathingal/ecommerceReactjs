@@ -4,7 +4,7 @@ const auth = require("../middleware/auth");
 const userController = require("../controller/userController");
 
 
-router.get('/signin',(req,res)=>{
+router.get('/signin', userController.signup,(req,res)=>{
 
    
 
