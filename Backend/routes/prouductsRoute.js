@@ -9,4 +9,6 @@ router.get('/getproduct/:id',productController.getProduct)
 
 router.post('/createproduct',upload.single('image'),productController.createProduct)
 
+router.delete('/deleteproduct/:id',productController.deleteProduct)
+
 module.exports = router

@@ -23,5 +23,15 @@ module.exports ={
         await product.save();
         return res.status(201).json(product);
     }),
+    updateProduct: tryCatch(async (req, res) => {
+        const {id} = req.params;
+        const product = await productModel.findByIdAndUpdate(id, req.body, {new: true});
+        return res.status(200).json(product);
+    }),
+    deleteProduct: tryCatch(async (req, res) => {
+        const {id} = req.params;
+        await productModel.findByIdAndDelete(id);    
+        return res.status(204).json({message: "Product deleted",success: true});
+    }),
 
 }

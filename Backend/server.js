@@ -5,6 +5,7 @@ const cors = require("cors");
 const connectDB = require('./config/db');
 const userRoute =  require('./routes/userRoute')
 const productsRoute = require('./routes/prouductsRoute')
+const adminRoute = require('./routes/adminRoute')
 const errorHandler = require('./middleware/errorHandler')
 const path = require('path');
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/v1/user',userRoute);
+app.use('/api/v1/admin',adminRoute);
 app.use('/api/v1/products',productsRoute);
 
 
