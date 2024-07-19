@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const productSchema = new Schema({
+const productSchema = new Schema(
+    {
     name: {
         type: String,
         required: [true, 'Product name is required']
@@ -18,9 +19,9 @@ const productSchema = new Schema({
     image: {
         type: String,
         required: [true, 'Product image is required']
-    }
-});
-
+    },},
+    {timestamps: true}
+);
 
 const product = mongoose.model('product', productSchema);
 
