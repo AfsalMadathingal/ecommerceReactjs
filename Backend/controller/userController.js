@@ -1,6 +1,8 @@
 const tryCatch = require("../util/tryCatch");
 const bcrypt = require("../util/bycrypt");
 const userModel = require("../models/userModel");
+const {createToken} = require('../middleware/auth')
+
 
 module.exports = {
 
@@ -20,7 +22,15 @@ module.exports = {
             return res.status(401).json({message: "Invalid credentials"});
         }
 
-        res.status(200).json(user);
+        const payload = {
+            id: user._id,
+            mobile: user.mobile,
+            role: "user"
+        };
+       
+        const token = createToken(payload);
+
+        res.status(200).json({success:true,user,token});
     }),
 
 

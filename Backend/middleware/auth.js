@@ -16,6 +16,14 @@ const verifyToken = (req, res, next) => {
 
 }
 
+const createToken = (payload) => {
+
+    
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: '1d'
+    })
+}
 
 
-module.exports = verifyToken
+
+module.exports = {verifyToken, createToken}
