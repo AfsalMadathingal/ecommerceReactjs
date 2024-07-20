@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
-  const navigate = useNavigate();
+    
+const navigate = useNavigate();
 
   return (
 <div className="w-screen h-screen pt-16 bg-gradient-to-r from-blue-900 via-purple-900 to-blue-900">
