@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState  } from "react";
+import { useNavigate } from "react-router-dom";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button} from "@nextui-org/react";
 
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const menuItems = [
     "Home",
@@ -26,7 +28,10 @@ export default function Nav() {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link 
+          className="cursor-pointer"
+          onClick={() => navigate("/")}
+          color="foreground" >
             Home
           </Link>
         </NavbarItem>

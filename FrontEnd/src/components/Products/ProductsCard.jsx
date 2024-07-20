@@ -1,8 +1,16 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
+
+  const navigate = useNavigate();
+
+
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden cursor-pointer">
+    <div
+     onClick={() => navigate(`/product/${product.id}`)}
+     className="bg-white shadow-md rounded-lg overflow-hidden cursor-pointer">
       <img src={product.image} alt={product.name} className="w-full h-48 object-cover"/>
       <div className="p-4">
         <h3 className="text-lg font-semibold">{product.name}</h3>
