@@ -4,18 +4,15 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAdminLogin, setIsAdmin] = useState(false);
   const [role, setRole] = useState(null);
 
   useEffect(() => {
     const adminToken = localStorage.getItem('adminToken');
     const userToken = localStorage.getItem('userToken');
-    if (adminToken) {
-      setIsAuthenticated(true);
-      setRole('admin');
-    } else if (userToken) {
-      setIsAuthenticated(true);
-      setRole('user');
-    }
+
+    setIsAdmin(adminToken ? true : false);
+
   }, []);
 
   const login = (role) => {
@@ -29,7 +26,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, role, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, role, login, logout ,isAdminLogin }}>
       {children}
     </AuthContext.Provider>
   );

@@ -6,6 +6,8 @@ import ProductDetails from "./components/Products/ProductDetails";
 import NavbarController from "./components/Navbar/NavbarController";
 import AuthProvider from "./context/AuthContext";
 import useAuth from "./Hook/UseAuth";
+import PublicRouteAdmin from "./components/PublicRouteAdmin";
+import PrivateRouteAdmin from "./components/PrivateRouteAdmin";
 const Dashboard = React.lazy(() => import("./pages/Admin/Dashboard"));
 const LoginForm = React.lazy(() => import("./pages/Auth/Login"));
 const Register = React.lazy(() => import("./pages/Auth/Register"));
@@ -18,26 +20,26 @@ function App() {
         <NavbarController />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/about"
-            element={<div className="bg-red-500">About</div>}
-          />
-          <Route
-            path="/admin/login"
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <AdminLogin />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/admin/dashboard"
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <Dashboard />
-              </Suspense>
-            }
-          />
+          <Route element={<PublicRouteAdmin />}>
+            <Route
+              path="/admin/login"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <AdminLogin />
+                </Suspense>
+              }
+            />
+          </Route>
+          <Route element={<PrivateRouteAdmin />}>
+            <Route
+              path="/admin/dashboard"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Dashboard />
+                </Suspense>
+              }
+            />
+          </Route>
           <Route
             path="/login"
             element={
