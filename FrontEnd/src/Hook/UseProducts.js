@@ -1,7 +1,7 @@
 // src/hooks/useProducts.js
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { adminApi, userApi } from '../api/axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { adminApi, userApi } from "../api/axios";
 
 const useProducts = () => {
   const [products, setProducts] = useState([]);
@@ -14,14 +14,31 @@ const useProducts = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:3000/api/v1/products');
-     const data = response.data.map(item => ({
+      const response = await axios.get("http://localhost:3000/api/v1/products");
+      const data = response.data.map((item) => ({
         ...item,
         id: item._id,
-        _id: undefined  
-      }))
+        _id: undefined,
+      }));
       setProducts(data);
-      
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchProductForAdmin = async (setProductsData) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await adminApi.get("/products");
+      const data = response.data.map((item) => ({
+        ...item,
+        id: item._id,
+        _id: undefined,
+      }));
+      setProductsData(data);
     } catch (err) {
       setError(err);
     } finally {
@@ -34,7 +51,9 @@ const useProducts = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/products/${id}`);
+      const response = await axios.get(
+        `http://localhost:3000/api/v1/products/${id}`
+      );
       setProduct(response.data);
     } catch (err) {
       setError(err);
@@ -56,7 +75,55 @@ const useProducts = () => {
     }
   };
 
-  // Use useEffect to fetch all products on initial render
+  const addProduct = async (product) => {
+    
+    setLoading(true);
+    setError(null);
+
+    const formData = new FormData();
+    formData.append("name", product.name);
+    formData.append("price", product.price);
+    formData.append("description", product.description);
+    formData.append("image", product.image);
+
+    try {
+       await adminApi.post("/products/product", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+   
+      
+      return await fetchProducts();
+     
+    } catch (err) {
+      setError(err);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const editProduct = async (formData,id) => {
+    setLoading(true);
+    setError(null);
+    try {
+      await adminApi.put(`/products/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      fetchProducts();
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false); 
+    } 
+  };
+
+
+ 
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -68,7 +135,10 @@ const useProducts = () => {
     error,
     fetchProducts,
     fetchProductById,
-    deleteProductById
+    deleteProductById,
+    addProduct,
+    fetchProductForAdmin,
+    editProduct
   };
 };
 

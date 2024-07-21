@@ -14,7 +14,6 @@ const Login = ({isAdmin}) => {
     e.preventDefault();
     try {
       await authLogin(id, password, isAdmin);
-      // login(isAdmin ? 'admin' : 'user');
     } catch (error) {
       alert('Login failed. Please check your credentials.');
     }

@@ -28,7 +28,7 @@ export default function AdminNavBar() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit">Shopy</p>
+          <p className="font-bold text-inherit">E-commerce</p>
         </NavbarBrand>
       </NavbarContent>
 
