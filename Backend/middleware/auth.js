@@ -20,6 +20,9 @@ const verifyToken = (req, res, next) => {
 const verifyAdminToken = (req, res, next) => {
 
     const authHeader = req.headers['authorization'];
+    console.log('====================================');
+    console.log(req.headers);
+    console.log('====================================');
     const token =  authHeader && authHeader.split(' ')[1];
     if(token == null) return res.sendStatus(401);
 

@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const adminSchema = new Schema({
-    username: {
+    adminId: {
         type: String,
-        required: [true, 'Username is required']
+        required: [true, 'id is required']
     },
     password: {
         type: String,

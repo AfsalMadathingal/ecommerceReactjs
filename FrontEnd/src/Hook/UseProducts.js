@@ -1,6 +1,7 @@
 // src/hooks/useProducts.js
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { adminApi, userApi } from '../api/axios';
 
 const useProducts = () => {
   const [products, setProducts] = useState([]);
@@ -42,10 +43,23 @@ const useProducts = () => {
     }
   };
 
-  // // Use useEffect to fetch all products on initial render
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, []);
+  const deleteProductById = async (id) => {
+    setLoading(true);
+    setError(null);
+    try {
+      await adminApi.delete(`/products/${id}`);
+      fetchProducts();
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Use useEffect to fetch all products on initial render
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return {
     products,
@@ -54,6 +68,7 @@ const useProducts = () => {
     error,
     fetchProducts,
     fetchProductById,
+    deleteProductById
   };
 };
 

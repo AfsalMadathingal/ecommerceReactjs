@@ -1,5 +1,5 @@
 const tryCatch = require("../util/tryCatch");
-const bcrypt = require("../util/bycrypt");
+const bcrypt = require("../util/bcrypt");
 const userModel = require("../models/userModel");
 const {createToken} = require('../middleware/auth')
 

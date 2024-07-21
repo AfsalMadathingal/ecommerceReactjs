@@ -1,14 +1,13 @@
 const tryCatch = require("../util/tryCatch");
-const bcrypt = require("../util/bycrypt");
+const bcrypt = require("../util/bcrypt");
 const auth = require("../middleware/auth");
 const adminModel = require("../models/adminModel");
 
 module.exports = {
 
     login: tryCatch(async (req, res) => {
-
-        const {adminId, password} = req.body;
-        const admin = await adminModel.findOne({adminId:Number(adminId)});
+        const {id, password} = req.body;
+        const admin = await adminModel.findOne({adminId:id});
         if(!admin){
             return res.status(401).json({message: "Not Authorized"});   
         }

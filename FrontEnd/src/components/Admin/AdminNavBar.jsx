@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button} from "@nextui-org/react";
 
 
-export default function Nav() {
+export default function AdminNavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const navigate = useNavigate();
 
@@ -27,24 +27,13 @@ export default function Nav() {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link 
-          className="cursor-pointer"
-          onClick={() => navigate("/")}
-          color="foreground" >
-            Home
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            All Products
-          </Link>
-        </NavbarItem>
+        <h1>Welcome to Admin Panel</h1>
       </NavbarContent>
       <NavbarContent justify="end">
+        {}
         <NavbarItem>
           <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
+           Logout
           </Button>
         </NavbarItem>
       </NavbarContent>
@@ -69,3 +58,4 @@ export default function Nav() {
    
   );
 }
+
