@@ -55,6 +55,8 @@ Make sure you have the following installed on your machine:
 
     The server will run on the port specified in the `.env` file. If you want to change the port, you can update it in the `.env` file.
 
+    if you changed the port in the `.env` file, you need to change the VITE_API_URL="http://localhost:3000/api/v1" in the frontend's `.env` file.
+
 ### Running the App
 
 1. Open your browser and go to:
