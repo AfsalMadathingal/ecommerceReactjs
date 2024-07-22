@@ -1,7 +1,3 @@
-Here's the updated README file with the revised installation steps:
-
----
-
 # E-commerce App
 
 ## Getting Started
