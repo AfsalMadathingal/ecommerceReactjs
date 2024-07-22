@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import {login as authLogin} from '../../auth/authService';
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const [mobile , setMobile] = useState('');
+  const [password, setPassword] = useState('');
+
+
+
+  const handleLogin = async () => {
+    
+    console.log(mobile, password);
+    try {
+      await authLogin(mobile,password);
+      navigate('/');
+    } catch (error) {
+      alert('Login failed. Please check your credentials.');
+    }
+  };
+
 
   return (
     <div className=" h-screen flex flex-col justify-center bg-gradient-to-r from-[#000000] via-[#4f0227] to-[#000000]">
@@ -14,20 +30,25 @@ const LoginForm = () => {
               <p className="text-3xl font-bold text-gray-800">Login</p>
             </div>
             <div className="mt-5">
+              <form action="">
+
               <label
                 className="font-semibold text-sm text-gray-600 pb-1 block"
-                htmlFor="login"
+                htmlFor="mobile"
               >
                 Mobile
               </label>
               <input
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
                 type="text"
-                id="login"
+                autoComplete="off"
+                id="mobile"
+                onChange={(e) => setMobile(e.target.value)}
               />
               <label
                 className="font-semibold text-sm text-gray-600 pb-1 block"
                 htmlFor="password"
+               
               >
                 Password
               </label>
@@ -35,7 +56,11 @@ const LoginForm = () => {
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
                 type="password"
                 id="password"
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
               />
+              </form>
+             
             </div>
             <div className="text-right mb-4">
               <a
@@ -48,6 +73,7 @@ const LoginForm = () => {
 
             <div className="mt-5">
               <button
+                onClick={() => handleLogin()}
                 className="py-2 px-4 bg-[#4f0227] hover:bg-red-900 focus:ring-red-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                 type="submit"
               >

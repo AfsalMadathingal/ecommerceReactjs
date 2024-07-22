@@ -6,6 +6,8 @@ import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, Navbar
 export default function UserNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const userToken = localStorage.getItem('userToken');
+
 
   const menuItems = [
     "Home",
@@ -43,9 +45,20 @@ export default function UserNavbar() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
+         {userToken ? (
+           <button 
+           onClick={(() => localStorage.removeItem('userToken'))}
+           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Log Out
+           </button>
+         ):
+         (
+          <button 
+           onClick={() => navigate("/register")}
+           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Sign Up
+           </button>
+         )
+         }
+         
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>

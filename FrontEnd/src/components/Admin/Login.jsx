@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from '../../Hook/UseAuth';
 import {login as authLogin} from '../../auth/authService';
 
 const Login = ({isAdmin}) => {
   const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  // const { login } = useAuth();
 
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  const handleLogin = async () => {
+   
+    console.log(id, password, isAdmin);
     try {
       await authLogin(id, password, isAdmin);
+      navigate('/admin/dashboard');
     } catch (error) {
       alert('Login failed. Please check your credentials.');
     }
@@ -48,7 +48,7 @@ const Login = ({isAdmin}) => {
                 Password
               </label>
               <input
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) =>{ setPassword(e.target.value)}}
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
                 type="password"
                 id="password"

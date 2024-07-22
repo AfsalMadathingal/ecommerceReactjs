@@ -8,15 +8,20 @@ module.exports = {
 
     signIn: tryCatch(async (req, res) => {
 
-        const {mobile,password} = req.body;
 
-        const user = await userModel.findOne({mobile});
+        const {id,password} = req.body;
+
+        const user = await userModel.findOne({mobile:id});
+
+
 
         if(!user){
             return res.status(404).json({message: "User not found"});
         }
 
         const isMatch = await bcrypt.comparePassword(password, user.password);
+
+
 
         if(!isMatch){
             return res.status(401).json({message: "Invalid credentials"});

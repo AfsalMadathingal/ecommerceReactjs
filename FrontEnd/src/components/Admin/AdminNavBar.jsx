@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../Hook/UseAuth";
 import {
   Navbar,
   NavbarBrand,
@@ -15,8 +14,14 @@ import {
 
 export default function AdminNavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const adminToken = localStorage.getItem('adminToken');
   const navigate = useNavigate();
-  const { isAdminLogin } = useAuth();
+
+
+  const handleLogout = () => {
+    localStorage.removeItem("adminToken");
+    navigate("/admin/login");
+  };
 
   const menuItems = ["Home", "All Products", "Log Out"];
 
@@ -36,11 +41,15 @@ export default function AdminNavBar() {
         <h1>Welcome to Admin Panel</h1>
       </NavbarContent>
       <NavbarContent justify="end">
-        {isAdminLogin && (
+        {adminToken && (
           <NavbarItem>
-            <Button as={Link} color="primary" href="#" variant="flat">
+
+            <button 
+            onClick={handleLogout}
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
               Logout
-            </Button>
+            </button>
+            
           </NavbarItem>
         )}
       </NavbarContent>

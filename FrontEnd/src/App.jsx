@@ -4,10 +4,8 @@ import "./App.css";
 import Home from "./pages/Home";
 import ProductDetails from "./components/Products/ProductDetails";
 import NavbarController from "./components/Navbar/NavbarController";
-import AuthProvider from "./context/AuthContext";
-import useAuth from "./Hook/UseAuth";
-import PublicRouteAdmin from "./components/PublicRouteAdmin";
-import PrivateRouteAdmin from "./components/PrivateRouteAdmin";
+import PublicRoute from "./components/PublicRoute";
+import PrivateRoute from "./components/PrivateRoute";
 const Dashboard = React.lazy(() => import("./pages/Admin/Dashboard"));
 const LoginForm = React.lazy(() => import("./pages/Auth/Login"));
 const Register = React.lazy(() => import("./pages/Auth/Register"));
@@ -16,11 +14,11 @@ const AdminLogin = React.lazy(() => import("./pages/Admin/AdminLogin"));
 function App() {
   return (
     <>
-      <AuthProvider>
+ 
         <NavbarController />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route element={<PublicRouteAdmin />}>
+          <Route element={<PublicRoute />}>
             <Route
               path="/admin/login"
               element={
@@ -30,7 +28,7 @@ function App() {
               }
             />
           </Route>
-          <Route element={<PrivateRouteAdmin />}>
+          <Route element={<PrivateRoute />}>
             <Route
               path="/admin/dashboard"
               element={
@@ -40,14 +38,17 @@ function App() {
               }
             />
           </Route>
+          <Route  element={<PublicRoute user={true}/>}>
           <Route
             path="/login"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<div >Loading...</div>}>
                 <LoginForm />
               </Suspense>
             }
           />
+          </Route>
+          <Route element={<PublicRoute user={true}/>}>
           <Route
             path="/register"
             element={
@@ -56,6 +57,7 @@ function App() {
               </Suspense>
             }
           />
+          </Route>
           <Route
             path="/product/:id"
             element={
@@ -65,7 +67,6 @@ function App() {
             }
           />
         </Routes>
-      </AuthProvider>
     </>
   );
 }

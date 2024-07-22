@@ -4,6 +4,7 @@ const upload = require("../middleware/upload");
 const fs = require("fs");
 const path = require("path");
 module.exports = {
+    
   getAllProducts: tryCatch(async (req, res) => {
     const products = await productModel.find();
     return res.status(200).json(products);
@@ -41,7 +42,6 @@ module.exports = {
         if (product.image) {
           const imagePath = new URL(product.image).pathname.slice(1);
           const absoluteImagePath = path.resolve(imagePath);
-          console.log(absoluteImagePath);
           fs.unlink(absoluteImagePath, (err) => {
             if (err) {
               console.error("Failed to delete image:", err);
@@ -63,7 +63,6 @@ module.exports = {
       if (product.image) {
         const imagePath = new URL(product.image).pathname.slice(1);
         const absoluteImagePath = path.resolve(imagePath);
-        console.log(absoluteImagePath);
         fs.unlink(absoluteImagePath, (err) => {
           if (err) {
             console.error("Failed to delete image:", err);

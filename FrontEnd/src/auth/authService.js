@@ -22,12 +22,7 @@ const login = async (id, password, isAdmin = false) => {
   }
 };
 
-const logout = (isAdmin = false) => {
-  if (isAdmin) {
-    localStorage.removeItem('adminToken');
-  } else {
-    localStorage.removeItem('userToken');
-  }
-};
 
-export { login, logout };
+
+
+export { login };

@@ -9,7 +9,7 @@ const useProducts = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch all products
+
   const fetchProducts = async () => {
     setLoading(true);
     setError(null);
@@ -46,7 +46,6 @@ const useProducts = () => {
     }
   };
 
-  // Fetch a single product by ID
   const fetchProductById = async (id) => {
     setLoading(true);
     setError(null);
