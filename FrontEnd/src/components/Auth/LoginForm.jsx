@@ -1,22 +1,26 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {login as authLogin} from '../../auth/authService';
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
+  
   const navigate = useNavigate();
-  const [mobile , setMobile] = useState('');
-  const [password, setPassword] = useState('');
-
-
+  const [mobile , setMobile] = useState(null);
+  const [password, setPassword] = useState(null);
 
   const handleLogin = async () => {
     
     console.log(mobile, password);
     try {
+      if(!mobile || !password) {
+        toast('Please enter mobile and password');
+        return
+      }
       await authLogin(mobile,password);
       navigate('/');
     } catch (error) {
-      alert('Login failed. Please check your credentials.');
+    toast('Login failed. Please check your credentials.');
     }
   };
 

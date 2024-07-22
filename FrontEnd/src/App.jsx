@@ -6,6 +6,8 @@ import ProductDetails from "./components/Products/ProductDetails";
 import NavbarController from "./components/Navbar/NavbarController";
 import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Dashboard = React.lazy(() => import("./pages/Admin/Dashboard"));
 const LoginForm = React.lazy(() => import("./pages/Auth/Login"));
 const Register = React.lazy(() => import("./pages/Auth/Register"));
@@ -14,7 +16,7 @@ const AdminLogin = React.lazy(() => import("./pages/Admin/AdminLogin"));
 function App() {
   return (
     <>
- 
+        <ToastContainer />
         <NavbarController />
         <Routes>
           <Route path="/" element={<Home />} />

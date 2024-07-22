@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {login as authLogin} from '../../auth/authService';
+import { toast } from "react-toastify";
 
 const Login = ({isAdmin}) => {
   const [id, setId] = useState('');
@@ -12,6 +13,10 @@ const Login = ({isAdmin}) => {
    
     console.log(id, password, isAdmin);
     try {
+      if(!id || !password) {
+        toast('Please enter ID and password');
+        return
+      }
       await authLogin(id, password, isAdmin);
       navigate('/admin/dashboard');
     } catch (error) {

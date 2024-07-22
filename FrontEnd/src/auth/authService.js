@@ -22,7 +22,20 @@ const login = async (id, password, isAdmin = false) => {
   }
 };
 
+const register = async (id, password) => {
+
+  try {
+    const endpoint = `${import.meta.env.VITE_API_URL}/user/signup`;
+    const response = await axios.post(endpoint, { id, password });
+    return response.data;
+  } catch (error) {
+    console.error('Registration failed:', error);
+    throw error;
+  }
+  
+};
 
 
 
-export { login };
+
+export { login ,register };

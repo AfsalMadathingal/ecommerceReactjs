@@ -8,6 +8,11 @@ export default function UserNavbar() {
   const navigate = useNavigate();
   const userToken = localStorage.getItem('userToken');
 
+  const handleLogout = () => {
+    localStorage.removeItem("userToken");
+    navigate("/");
+  };
+
 
   const menuItems = [
     "Home",
@@ -47,8 +52,8 @@ export default function UserNavbar() {
         <NavbarItem>
          {userToken ? (
            <button 
-           onClick={(() => localStorage.removeItem('userToken'))}
-           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Log Out
+           onClick={handleLogout}
+           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Log Out
            </button>
          ):
          (

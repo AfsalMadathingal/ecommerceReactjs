@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import {register as authRegister} from "../../auth/authService.js";
 
 const RegisterForm = () => {
+  const [mobile, setMobile] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  
+
+  const handleRegister = async () => {
+
+    if (password !== confirmPassword) {
+      toast("Passwords do not match");
+      return
+    }
+    try {
+      await authRegister(mobile, password);
+      navigate('/');
+    } catch (error) {
+      toast('Registration failed. Please check your credentials.');
+    }
+  };
+
   const navigate = useNavigate(); 
   return (
     <div className=" h-screen flex flex-col justify-center bg-gradient-to-r from-[#000000] via-[#4f0227] to-[#000000]">
@@ -14,14 +35,15 @@ const RegisterForm = () => {
             <div className="mt-5">
               <label
                 className="font-semibold text-sm text-gray-600 pb-1 block"
-                htmlFor="login"
+                htmlFor="mobile"
               >
                 Mobile
               </label>
               <input
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
                 type="text"
-                id="login"
+                id="mobile"
+                onChange={(e) => setMobile(e.target.value)}
               />
               <label
                 className="font-semibold text-sm text-gray-600 pb-1 block"
@@ -33,17 +55,19 @@ const RegisterForm = () => {
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
                 type="password"
                 id="password"
+                onChange={(e) => setPassword(e.target.value)}
               />
               <label
                 className="font-semibold text-sm text-gray-600 pb-1 block"
-                htmlFor="password"
+                htmlFor="confirmpassword"
               >
                 Confirm Password
               </label>
               <input
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
                 type="password"
-                id="password"
+                id="confirmpassword"
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
             <div className="text-right mb-4">
@@ -59,6 +83,7 @@ const RegisterForm = () => {
               <button
                 className="py-2 px-4 bg-[#4f0227] hover:bg-red-900 focus:ring-red-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                 type="submit"
+                onClick={handleRegister}
               >
                 sign up
               </button>
