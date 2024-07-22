@@ -81,7 +81,7 @@ If you do not open the home page in your browser at least once, the database may
     ```json
     {
         "adminId": "1234",
-        "password": "$2a$10$yAuEnEiocW3QR/ZqTp0.v.Xk99qtORj1NJxJJl.FNDIHtucptNNle"
+        "password": "$2a$10$2sqCYv47JvaksBjlPyMTBeP.t9GHULa4qSWOvZKt094v0/CZ.9O3K"
     }
     ```
 
