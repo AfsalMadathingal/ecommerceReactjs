@@ -5,7 +5,7 @@ import ReactLoading from "react-loading";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { fetchProductById, loading, product } = useProducts();
+  const { fetchProductById, product } = useProducts();
 
   useEffect(() => {
     fetchProductById(id);

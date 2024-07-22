@@ -96,6 +96,8 @@ If you do not open the home page in your browser at least once, the database may
     - **Admin ID**: 1234
     - **Password**: 12345
 
+Note if you have any problems logging in, you can use https://bcrypt-generator.com/ to generate a password and paste it in the password field.
+
 5. After logging in, you will see the product management options. Add some products through the admin panel.
 
 6. Once you have added products, open:
