@@ -75,6 +75,9 @@ To add products, you need to login to the admin panel:
 
 2. Insert the following document into the `admin` collection:
 
+Note
+If you do not open the home page in your browser at least once, the database may not be created by default.
+
     ```json
     {
         "adminId": "1234",
