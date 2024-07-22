@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const adminApi = axios.create({
-  baseURL: 'http://localhost:3000/api/v1',
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 adminApi.interceptors.request.use(
@@ -20,7 +20,7 @@ adminApi.interceptors.request.use(
 
 
 const userApi = axios.create({
-  baseURL: 'http://localhost:3000/api/v1', 
+  baseURL: import.meta.env.VITE_API_URL, 
 });
 
 userApi.interceptors.request.use(

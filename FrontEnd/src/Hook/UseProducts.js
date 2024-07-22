@@ -14,7 +14,7 @@ const useProducts = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get("http://localhost:3000/api/v1/products");
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
       const data = response.data.map((item) => ({
         ...item,
         id: item._id,
@@ -51,7 +51,7 @@ const useProducts = () => {
     setError(null);
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/products/${id}`
+        `${import.meta.env.VITE_API_URL}/products/${id}`
       );
       setProduct(response.data);
     } catch (err) {
