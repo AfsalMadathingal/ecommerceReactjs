@@ -41,9 +41,9 @@ module.exports = {
 
     signup: tryCatch(async (req, res) => {
 
-        const {mobile, password} = req.body;
+        const {id, password} = req.body;
         const hashedPassword = await bcrypt.hashPassword(password);
-        const user = await userModel.create({mobile, password: hashedPassword});
+        const user = await userModel.create({mobile:id, password: hashedPassword});
         res.status(201).json(user);
         
     }),

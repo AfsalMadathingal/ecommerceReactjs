@@ -60,6 +60,7 @@ const useProducts = () => {
       setLoading(false);
     }
   };
+  
 
   const deleteProductById = async (id) => {
     setLoading(true);
